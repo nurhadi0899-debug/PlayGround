@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a2836" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>Skate Session — Venice Beach 2:00 Trick Run</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script type="module" crossorigin src="/assets/index-vvh0tucZ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-UoYm_GGx.css">
+</head>
+<body>
+  <div id="scene" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div id="startScreen" class="overlay start-screen">
+    <div class="start-top">
+      <span class="present">OMG SKATE CO. PRESENTS</span>
+      <span class="loc">34.0195° N · 118.4912° W</span>
+    </div>
+
+    <div class="brand">
+      <div class="brand-kicker">VENICE BEACH · CALIFORNIA</div>
+      <h1 class="logo"><span>SKATE</span><em>SESSION</em></h1>
+      <div class="run-strip"><b>2:00</b><span>TRICK RUN</span><i></i><span>SOLO SESSION</span></div>
+    </div>
+
+    <div class="start-card">
+      <div class="card-head">
+        <span>DROP IN WHEN READY</span>
+        <span class="live-dot">LIVE</span>
+      </div>
+      <div class="best-row"><span>PERSONAL BEST</span><b id="bestStart">0</b></div>
+      <button id="startBtn" class="btn primary" aria-label="Start">START</button>
+      <button id="tiltBtn" class="btn tilt" aria-pressed="false">TILT STEERING <span id="tiltState">OFF</span></button>
+      <p id="motionNote" class="motion-note">Optional. On iPhone/iPad, tap tilt to request motion access.</p>
+      <div class="hint-grid">
+        <div><kbd>JOYSTICK</kbd><span>Steer &amp; push</span></div>
+        <div><kbd>OLLIE</kbd><span>Jump / launch</span></div>
+        <div><kbd>FLIP</kbd><span>Flip tricks</span></div>
+        <div><kbd>GRAB</kbd><span>Grab tricks</span></div>
+        <div><kbd>GRIND</kbd><span>Lock rails</span></div>
+        <div><kbd>SPECIAL</kbd><span>Double points</span></div>
+      </div>
+      <div class="desktop-keys">Desktop: <b>WASD</b> move · <b>SPACE</b> ollie · <b>J</b> flip · <b>K</b> grab · <b>L</b> grind · <b>E</b> special · <b>P</b> pause</div>
+    </div>
+
+    <div class="start-bottom">
+      <span>BOWL · HALFPIPE · STREET · RAILS</span>
+      <span>TOUCH / TILT / KEYBOARD</span>
+    </div>
+  </div>
+
+  <div id="hud" class="hud hidden">
+    <div class="hud-top">
+      <div class="timer-box">
+        <div class="hud-label">RUN TIME</div>
+        <div id="timer" class="timer">2:00</div>
+        <div class="timer-track"><i id="timerFill"></i></div>
+      </div>
+      <div class="park-tag">
+        <span>VENICE BEACH</span>
+        <b>SKATE PARK</b>
+      </div>
+      <div class="score-box">
+        <div class="hud-label">SCORE</div>
+        <div id="score" class="score">0</div>
+        <div id="bestHud" class="best-hud">BEST 0</div>
+      </div>
+      <button id="pauseBtn" class="icon-btn" aria-label="Pause">❚❚</button>
+    </div>
+
+    <div id="comboPanel" class="combo-panel hidden">
+      <div id="comboMult" class="combo-mult">x1</div>
+      <div class="combo-body">
+        <div id="comboTricks" class="combo-tricks">OLLIE</div>
+        <div id="comboPoints" class="combo-points">0</div>
+        <div class="combo-track"><i id="comboFill"></i></div>
+      </div>
+    </div>
+
+    <div id="trickFeed" class="trick-feed"></div>
+
+    <div id="prompt" class="prompt hidden"></div>
+
+    <div id="balanceWrap" class="balance-wrap hidden">
+      <span>BALANCE</span>
+      <div class="balance-track"><i id="balanceNeedle"></i></div>
+    </div>
+
+    <div class="special-wrap">
+      <div class="special-meta"><span>SPECIAL</span><b id="specialText">CHARGING</b></div>
+      <div class="special-track"><i id="specialFill"></i></div>
+    </div>
+
+    <div id="countdown" class="countdown hidden">GO!</div>
+
+    <div id="touchControls" class="touch-controls">
+      <div id="stick" class="stick" aria-label="Movement joystick">
+        <div class="stick-ring"></div>
+        <div id="knob" class="knob"></div>
+        <span class="stick-label">PUSH / STEER</span>
+      </div>
+      <div class="action-pad">
+        <button class="action ollie" data-act="ollie" aria-label="Ollie">OLLIE</button>
+        <button class="action" data-act="flip" aria-label="Flip trick">FLIP</button>
+        <button class="action" data-act="grab" aria-label="Grab trick">GRAB</button>
+        <button class="action" data-act="grind" aria-label="Grind">GRIND</button>
+        <button class="action special-btn" data-act="special" aria-label="Special">SPECIAL</button>
+      </div>
+    </div>
+
+    <div class="desktop-help">WASD move · SPACE ollie · J flip · K grab · L grind · E special · P pause</div>
+  </div>
+
+  <div id="pauseScreen" class="overlay pause-screen hidden">
+    <div class="pause-card">
+      <div class="brand-kicker">SESSION PAUSED</div>
+      <h2>TAKE FIVE</h2>
+      <button id="resumeBtn" class="btn primary">RESUME</button>
+      <button id="restartBtn" class="btn ghost">RESTART RUN</button>
+      <button id="pauseTiltBtn" class="btn tilt" aria-pressed="false">TILT STEERING <span id="pauseTiltState">OFF</span></button>
+      <button id="soundBtn" class="btn ghost">SOUND <span id="soundState">ON</span></button>
+      <p class="motion-note" id="pauseMotionNote">Tilt steering is optional and works on phones and tablets.</p>
+    </div>
+  </div>
+
+  <div id="endScreen" class="overlay end-screen hidden">
+    <div class="end-card">
+      <div class="end-head"><span>RUN COMPLETE</span><span id="endGrade" class="grade">A</span></div>
+      <div class="end-score-label">FINAL SCORE</div>
+      <div id="endScore" class="end-score">0</div>
+      <div class="end-stats">
+        <div><span>BEST COMBO</span><b id="endCombo">0</b></div>
+        <div><span>TRICKS LANDED</span><b id="endTricks">0</b></div>
+        <div><span>BAILS</span><b id="endBails">0</b></div>
+        <div><span>PERSONAL BEST</span><b id="endBest">0</b></div>
+      </div>
+      <div id="newBest" class="new-best hidden">NEW PERSONAL BEST</div>
+      <button id="againBtn" class="btn primary">SKATE AGAIN</button>
+      <button id="menuBtn" class="btn ghost">BACK TO MENU</button>
+    </div>
+  </div>
+
+</body>
+</html>
